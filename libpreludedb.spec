@@ -4,7 +4,7 @@
 Summary:        Provide the framework for easy access to the Prelude database
 Name:           libpreludedb
 Version:        0.9.11.3
-Release:        %mkrel 1
+Release:        %mkrel 2
 License:        GPL
 Group:          System/Libraries
 URL:            http://www.prelude-ids.org/
@@ -12,6 +12,7 @@ Source0:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.
 Source1:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.sig
 Source2:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.md5
 Source3:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.txt
+Source4:        libpreludedb-addIndices.sql
 Patch0:         libpreludedb-0.9.6-postgresql_headers.diff
 BuildRequires:  automake1.8
 BuildRequires:  autoconf2.5
@@ -159,6 +160,8 @@ database.
 
 %{makeinstall_std}
 %{makeinstall_std} -C bindings/perl
+
+%{__cp} -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
 %{_bindir}/chrpath -d %{buildroot}%{_libdir}/libpreludedb.so.0.?.? \
                       %{buildroot}%{_libdir}/libpreludedb/plugins/formats/classic.so \
