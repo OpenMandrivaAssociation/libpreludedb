@@ -4,7 +4,7 @@
 Summary:        Provide the framework for easy access to the Prelude database
 Name:           libpreludedb
 Version:        0.9.11.3
-Release:        %mkrel 2
+Release:        %mkrel 3
 License:        GPL
 Group:          System/Libraries
 URL:            http://www.prelude-ids.org/
@@ -14,6 +14,7 @@ Source2:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.
 Source3:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.txt
 Source4:        libpreludedb-addIndices.sql
 Patch0:         libpreludedb-0.9.6-postgresql_headers.diff
+Patch1:         libpreludedb-numeric_to_bigint.patch
 BuildRequires:  automake1.8
 BuildRequires:  autoconf2.5
 BuildRequires:  chrpath
@@ -102,8 +103,8 @@ Provides perl bindings for PreludeDB.
 Summary:        Plugin to use prelude with a MySQL database
 Group:          System/Servers
 Requires:       %{libname} = %{version}
-Provides:       prelude-manager-mysql-plugin
-Obsoletes:       prelude-manager-mysql-plugin
+Obsoletes:       prelude-manager-mysql-plugin < %{version}
+Provides:       prelude-manager-mysql-plugin = %{version}
 
 %description -n preludedb-mysql
 This plugin authorise prelude to store alerts into a MySQL
@@ -113,8 +114,8 @@ database.
 Summary:        Plugin to use prelude with a PostgreSQL database
 Group:          System/Servers
 Requires:       %{libname} = %{version}
-Provides:       prelude-manager-pgsql-plugin
-Obsoletes:      prelude-manager-pgsql-plugin
+Obsoletes:      prelude-manager-pgsql-plugin < %{version}
+Provides:       prelude-manager-pgsql-plugin = %{version}
 
 %description -n preludedb-pgsql
 This plugin authorise prelude to store alerts into a PostgreSQL
@@ -132,6 +133,7 @@ database.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p1
 %{__perl} -pi -e "s|/lib/|/%{_lib}/|g" configure.in
 
 %build
