@@ -3,8 +3,8 @@
 
 Summary:        Provide the framework for easy access to the Prelude database
 Name:           libpreludedb
-Version:        0.9.11.3
-Release:        %mkrel 3
+Version:        0.9.12
+Release:        %mkrel 1
 License:        GPL
 Group:          System/Libraries
 URL:            http://www.prelude-ids.org/
