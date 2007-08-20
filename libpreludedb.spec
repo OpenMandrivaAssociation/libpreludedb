@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        0.9.13
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPL
 Group:          System/Libraries
@@ -166,7 +166,7 @@ database.
     --with-perl-installdirs=vendor \
     --with-python \
     --enable-gtk-doc \
-    --with-html-dir=%{_docdir}/%{name}-devel
+    --with-html-dir==%{_docdir}/%{libnamedevel}
 %{make}
 
 %install
@@ -205,7 +205,7 @@ database.
 
 %files -n %{libnamedevel}
 %defattr(-,root,root,0755)
-%doc %{_docdir}/%{name}-devel
+%doc =%{_docdir}/%{libnamedevel}
 %if %mdkversion >= 1020
 %{multiarch_bindir}/%{name}-config
 %endif
