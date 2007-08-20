@@ -150,6 +150,7 @@ database.
 %setup -q
 %patch0 -p0
 %{__perl} -pi -e "s|/lib/|/%{_lib}/|g" configure.in
+%{__autoconf}
 
 %build
 %{configure2_5x} \
