@@ -1,7 +1,7 @@
 %define major                   0
 %define libname                 %mklibname preludedb %{major}
 %define libnamedevel            %mklibname preludedb -d
-%define libnamestatucdevel      %mklibname preludedb -d -s
+%define libnamestaticdevel      %mklibname preludedb -d -s
 
 Name:           libpreludedb
 Version:        0.9.13
@@ -166,7 +166,7 @@ database.
     --with-perl-installdirs=vendor \
     --with-python \
     --enable-gtk-doc \
-    --with-html-dir==%{_docdir}/%{libnamedevel}
+    --with-html-dir=%{_docdir}/%{libnamedevel}
 %{make}
 
 %install
@@ -205,7 +205,7 @@ database.
 
 %files -n %{libnamedevel}
 %defattr(-,root,root,0755)
-%doc =%{_docdir}/%{libnamedevel}
+%doc %{_docdir}/%{libnamedevel}
 %if %mdkversion >= 1020
 %{multiarch_bindir}/%{name}-config
 %endif
