@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        0.9.13
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPL
 Group:          System/Libraries
@@ -62,6 +62,7 @@ Requires:       libltdl-devel
 Provides:       preludedb-devel = %{version}-%{release}
 Provides:       %{_lib}preludedb-devel = %{version}-%{release}
 Provides:       preludedb-devel = %{version}-%{release}
+Obsoletes:	%mklibname -d preludedb 0
 
 %description -n %{libnamedevel}
 The PreludeDB Library provides an abstraction layer upon the type
