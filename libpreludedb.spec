@@ -21,7 +21,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  libltdl-devel
 BuildRequires:  libgnutls-devel
 BuildRequires:  zlib-devel
-BuildRequires:  libprelude-devel
+BuildRequires:  prelude-devel
 BuildRequires:  MySQL-devel
 BuildRequires:  postgresql-devel
 BuildRequires:  python-devel
