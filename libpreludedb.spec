@@ -32,6 +32,7 @@ BuildRequires:  swig-devel
 %if %mdkversion >= 1020
 BuildRequires:  multiarch-utils
 %endif
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The PreludeDB Library provides an abstraction layer upon the type
