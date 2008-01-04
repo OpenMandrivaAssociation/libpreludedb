@@ -4,8 +4,8 @@
 %define libnamestaticdevel      %mklibname preludedb -d -s
 
 Name:           libpreludedb
-Version:        0.9.13
-Release:        %mkrel 3
+Version:        0.9.14.1
+Release:        %mkrel 1
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPL
 Group:          System/Libraries
