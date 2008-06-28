@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        0.9.14.1
-Release:        %mkrel 4
+Release:        %mkrel 5
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
@@ -15,24 +15,21 @@ Source1:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.
 Source2:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.md5
 Source3:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.txt
 Source4:        libpreludedb-addIndices.sql
-Patch0:         libpreludedb-0.9.6-postgresql-headers.patch
 BuildRequires:  chrpath
-BuildRequires:  openssl-devel
-BuildRequires:  libltdl-devel
-BuildRequires:  libgnutls-devel
-BuildRequires:  zlib-devel
-BuildRequires:  prelude-devel
-BuildRequires:  MySQL-devel
-BuildRequires:  postgresql-devel
-BuildRequires:  python-devel
-BuildRequires:  perl-devel
 BuildRequires:  gtk-doc
-BuildRequires:  sqlite3-devel
-BuildRequires:  swig-devel
-%if %mdkversion >= 1020
+BuildRequires:  libgnutls-devel
+BuildRequires:  libltdl-devel
 BuildRequires:  multiarch-utils
-%endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:  MySQL-devel
+BuildRequires:  openssl-devel
+BuildRequires:  perl-devel
+BuildRequires:  postgresql-devel
+BuildRequires:  prelude-devel
+BuildRequires:  python-devel
+BuildRequires:  sqlite3-devel
+BuildRequires:  swig
+BuildRequires:  zlib-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The PreludeDB Library provides an abstraction layer upon the type
@@ -41,7 +38,7 @@ allows developers to use the Prelude IDMEF database easily and
 efficiently wi thout worrying about SQL, and to access the
 database independently of the type/format of the database.
 
-%package -n %{libname}
+%package -n	%{libname}
 Summary:        Provide the framework for easy access to the Prelude database
 Group:          System/Libraries
 Provides:       %{name} = %{version}-%{release}
@@ -149,12 +146,11 @@ database.
 
 %prep
 %setup -q
-%patch0 -p0
 %{__perl} -pi -e "s|/lib/|/%{_lib}/|g" configure.in
 %{__autoconf}
 
 %build
-%{configure2_5x} \
+%configure2_5x \
     --enable-static \
     --enable-shared \
     --localstatedir=%{_var} \
@@ -168,13 +164,13 @@ database.
     --with-python \
     --enable-gtk-doc \
     --with-html-dir=%{_docdir}/%{libnamedevel}
-%{make}
+%make
 
 %install
 %{__rm} -rf %{buildroot}
 
-%{makeinstall_std}
-%{makeinstall_std} -C bindings/perl
+%makeinstall_std
+%makeinstall_std -C bindings/perl
 
 %{__cp} -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
