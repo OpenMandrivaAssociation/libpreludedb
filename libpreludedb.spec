@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        0.9.15.1
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
@@ -29,7 +29,7 @@ BuildRequires:  python-devel
 BuildRequires:  sqlite3-devel
 BuildRequires:  swig
 BuildRequires:  zlib-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The PreludeDB Library provides an abstraction layer upon the type
