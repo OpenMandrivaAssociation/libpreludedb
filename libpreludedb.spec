@@ -20,7 +20,7 @@ BuildRequires:  gtk-doc
 BuildRequires:  libgnutls-devel
 BuildRequires:  libltdl-devel
 BuildRequires:  multiarch-utils
-BuildRequires:  MySQL-devel
+BuildRequires:  mysql-devel
 BuildRequires:  openssl-devel
 BuildRequires:  perl-devel
 BuildRequires:  postgresql-devel
