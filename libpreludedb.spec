@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        0.9.15.1
-Release:        %mkrel 3
+Release:        %mkrel 4
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
@@ -15,6 +15,7 @@ Source1:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.
 Source2:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.md5
 Source3:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.txt
 Source4:        libpreludedb-addIndices.sql
+Patch0:		libpreludedb-0.9.15.1-fix-str-fmt.patch
 BuildRequires:  chrpath
 BuildRequires:  gtk-doc
 BuildRequires:  libgnutls-devel
@@ -146,6 +147,7 @@ database.
 
 %prep
 %setup -q
+%patch0 -p0
 %{__perl} -pi -e "s|/lib/|/%{_lib}/|g" configure.in
 %{__autoconf}
 
