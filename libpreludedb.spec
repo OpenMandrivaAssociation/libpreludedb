@@ -4,8 +4,8 @@
 %define libnamestaticdevel      %mklibname preludedb -d -s
 
 Name:           libpreludedb
-Version:        0.9.15.1
-Release:        %mkrel 6
+Version:        1.0.0
+Release:        %mkrel 1
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
@@ -72,23 +72,6 @@ database independently of the type/format of the database.
 This package contains the development libraries and headers for
 PreludeDB.
 
-%package -n %{libnamestaticdevel}
-Summary:        Static libraries for PreludeDB
-Group:          Development/C
-Requires:       %{libnamedevel} = %{version}-%{release}
-Requires:       openssl-static-devel
-Requires:       libltdl-devel
-Provides:       preludedb-static-devel = %{version}-%{release}
-
-%description -n %{libnamestaticdevel}
-The PreludeDB Library provides an abstraction layer upon the type
-and the format of the database used to store IDMEF alerts. It
-allows developers to use the Prelude IDMEF database easily and
-efficiently wi thout worrying about SQL, and to access the
-database independently of the type/format of the database.
-
-This package contains the static libraries for PreludeDB.
-
 %package -n preludedb-tools
 Summary:        The interface for %{libname}
 Group:          Networking/Other
@@ -147,20 +130,14 @@ database.
 
 %prep
 %setup -q
-%patch0 -p0
-%{__perl} -pi -e "s|/lib/|/%{_lib}/|g" configure.in
-%{__autoconf}
 
 %build
 %configure2_5x \
-    --enable-static \
+    --disable-rpath \
+    --disable-static \
     --enable-shared \
     --localstatedir=%{_var} \
     --includedir=%{_includedir}/%{name} \
-    --with-libprelude-prefix=%{_prefix} \
-    --with-mysql=%{_prefix} \
-    --with-pgsql=%{_prefix} \
-    --with-sqlite3=%{_prefix} \
     --with-swig \
     --with-perl-installdirs=vendor \
     --with-python \
@@ -175,12 +152,6 @@ database.
 %makeinstall_std -C bindings/perl
 
 %{__cp} -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
-
-%{_bindir}/chrpath -d %{buildroot}%{_libdir}/libpreludedb.so.0.?.? \
-                      %{buildroot}%{_libdir}/libpreludedb/plugins/formats/classic.so \
-                      %{buildroot}%{_libdir}/libpreludedb/plugins/sql/mysql.so \
-                      %{buildroot}%{_libdir}/libpreludedb/plugins/sql/pgsql.so \
-                      %{buildroot}%{_libdir}/libpreludedb/plugins/sql/sqlite3.so
 
 %if %mdkversion >= 1020
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
@@ -218,14 +189,8 @@ database.
 %dir %{_includedir}/%{name}
 %{_includedir}/%{name}/*.h
 %{_datadir}/aclocal/*.m4
-%{_libdir}/%{name}/plugins/formats/*.a
 %{_libdir}/%{name}/plugins/formats/*.la
 %{_libdir}/%{name}/plugins/sql/*.la
-%{_libdir}/%{name}/plugins/sql/*.a
-
-%files -n %{libnamestaticdevel}
-%defattr(-,root,root,0755)
-%{_libdir}/*.a
 
 %files -n preludedb-tools
 %defattr(-,root,root,0755)
