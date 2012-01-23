@@ -20,7 +20,6 @@ BuildRequires:  chrpath
 BuildRequires:  gtk-doc
 BuildRequires:  libgnutls-devel
 BuildRequires:  libltdl-devel
-BuildRequires:  multiarch-utils
 BuildRequires:  mysql-devel
 BuildRequires:  openssl-devel
 BuildRequires:  perl-devel
@@ -30,7 +29,6 @@ BuildRequires:  python-devel
 BuildRequires:  sqlite3-devel
 BuildRequires:  swig
 BuildRequires:  zlib-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The PreludeDB Library provides an abstraction layer upon the type
@@ -153,23 +151,14 @@ database.
 
 %{__cp} -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
-%if %mdkversion >= 1020
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
-%endif
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-%{__rm} -rf %{buildroot}
+# cleanup
+rm -f %{buildroot}%{_libdir}/*.la
+rm -f %{_libdir}/%{name}/plugins/formats/*.la
+rm -f %{_libdir}/%{name}/plugins/sql/*.la
 
 %files -n %{libname}
-%defattr(-,root,root,0755)
 %doc COPYING ChangeLog HACKING.README LICENSE.README NEWS README
 %{_libdir}/lib*.so.*
 %dir %{_libdir}/%{name}/plugins
@@ -178,36 +167,26 @@ database.
 %{_libdir}/%{name}/plugins/formats/classic.so
 
 %files -n %{libnamedevel}
-%defattr(-,root,root,0755)
 %doc %{_docdir}/%{libnamedevel}
-%if %mdkversion >= 1020
 %{multiarch_bindir}/%{name}-config
-%endif
 %{_bindir}/%{name}-config
 %{_libdir}/*.so
-%{_libdir}/*.la
 %dir %{_includedir}/%{name}
 %{_includedir}/%{name}/*.h
 %{_datadir}/aclocal/*.m4
-%{_libdir}/%{name}/plugins/formats/*.la
-%{_libdir}/%{name}/plugins/sql/*.la
 
 %files -n preludedb-tools
-%defattr(-,root,root,0755)
 %{_bindir}/preludedb-admin
 %{_mandir}/man1/preludedb-admin.1*
 
 %files -n python-preludedb
-%defattr(-,root,root,0755)
 %{_libdir}/python*/site-packages/*
 
 %files -n perl-preludedb
-%defattr(-,root,root,0755)
 %{perl_vendorlib}/*/auto/PreludeDB/PreludeDB.so
 %{perl_vendorlib}/*/PreludeDB.pm
 
 %files -n preludedb-mysql
-%defattr(-,root,root,0755)
 %{_libdir}/%{name}/plugins/sql/mysql.so
 %attr(0755,root,root) %{_datadir}/%{name}/classic/mysql2sqlite.sh
 %attr(0755,root,root) %{_datadir}/%{name}/classic/mysql2pgsql.sh
@@ -215,13 +194,11 @@ database.
 %dir %{_datadir}/%{name}/classic
 
 %files -n preludedb-pgsql
-%defattr(-,root,root,0755)
 %{_libdir}/%{name}/plugins/sql/pgsql.so
 %{_datadir}/%{name}/classic/pgsql*
 %dir %{_datadir}/%{name}/classic
 
 %files -n preludedb-sqlite3
-%defattr(-,root,root,0755)
 %{_libdir}/%{name}/plugins/sql/sqlite3.so
 %{_datadir}/%{name}/classic/sqlite*
 %dir %{_datadir}/%{name}/classic
