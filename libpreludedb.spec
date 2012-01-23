@@ -165,6 +165,7 @@ rm -f %{buildroot}%{_libdir}/%{name}/plugins/sql/*.*a
 %dir %{_libdir}/%{name}/plugins/formats
 %dir %{_libdir}/%{name}/plugins/sql
 %{_libdir}/%{name}/plugins/formats/classic.so
+%{_datadir}/%{name}/classic/addIndices.sql
 
 %files -n %{libnamedevel}
 %doc %{_docdir}/%{libnamedevel}
