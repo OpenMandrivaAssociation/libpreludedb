@@ -154,9 +154,9 @@ database.
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
 
 # cleanup
-rm -f %{buildroot}%{_libdir}/*.la
-rm -f %{_libdir}/%{name}/plugins/formats/*.la
-rm -f %{_libdir}/%{name}/plugins/sql/*.la
+rm -f %{buildroot}%{_libdir}/*.*a
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/formats/*.*a
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/sql/*.*a
 
 %files -n %{libname}
 %doc COPYING ChangeLog HACKING.README LICENSE.README NEWS README
@@ -190,15 +190,12 @@ rm -f %{_libdir}/%{name}/plugins/sql/*.la
 %{_libdir}/%{name}/plugins/sql/mysql.so
 %attr(0755,root,root) %{_datadir}/%{name}/classic/mysql2sqlite.sh
 %attr(0755,root,root) %{_datadir}/%{name}/classic/mysql2pgsql.sh
-%{_datadir}/%{name}/classic/*.sql
-%dir %{_datadir}/%{name}/classic
+%{_datadir}/%{name}/classic/mysql*.sql
 
 %files -n preludedb-pgsql
 %{_libdir}/%{name}/plugins/sql/pgsql.so
-%{_datadir}/%{name}/classic/pgsql*
-%dir %{_datadir}/%{name}/classic
+%{_datadir}/%{name}/classic/pgsql*.sql
 
 %files -n preludedb-sqlite3
 %{_libdir}/%{name}/plugins/sql/sqlite3.so
-%{_datadir}/%{name}/classic/sqlite*
-%dir %{_datadir}/%{name}/classic
+%{_datadir}/%{name}/classic/sqlite*.sql
