@@ -4,18 +4,14 @@
 %define libnamestaticdevel      %mklibname preludedb -d -s
 
 Name:           libpreludedb
-Version:        1.0.0
-Release:        %mkrel 8
+Version:        1.0.1
+Release:        %mkrel 0.0.p1.1
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
 URL:            http://www.prelude-ids.org/
-Source0:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
-Source1:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.sig
-Source2:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz.md5
-Source3:        http://www.prelude-ids.org/download/releases/%{name}-%{version}.txt
+Source0:        http://www.prelude-ids.org/download/releases/%{name}-%{version}p1.tar.gz
 Source4:        libpreludedb-addIndices.sql
-Patch0:		libpreludedb-0.9.15.1-fix-str-fmt.patch
 BuildRequires:  chrpath
 BuildRequires:  gtk-doc
 BuildRequires:  libgnutls-devel
@@ -127,7 +123,7 @@ This plugin authorise prelude to store alerts into a SQLite3
 database.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}p1
 
 %build
 %configure2_5x \
