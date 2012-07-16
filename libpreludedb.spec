@@ -15,7 +15,7 @@ Source4:        libpreludedb-addIndices.sql
 BuildRequires:  chrpath
 BuildRequires:  gtk-doc
 BuildRequires:  libgnutls-devel
-BuildRequires:  libltdl-devel
+BuildRequires:  libtool-devel
 BuildRequires:  mysql-devel
 BuildRequires:  openssl-devel
 BuildRequires:  perl-devel
