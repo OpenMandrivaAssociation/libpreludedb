@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        1.0.1
-Release:        %mkrel 0.0.p1.1
+Release:        %mkrel 0.0.p1.0
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
