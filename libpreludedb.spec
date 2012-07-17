@@ -5,7 +5,7 @@
 
 Name:           libpreludedb
 Version:        1.0.1
-Release:        %mkrel 0.0.p1.0
+Release:        %mkrel 0.0.p1.1
 Summary:        Provide the framework for easy access to the Prelude database
 License:        GPLv2+
 Group:          System/Libraries
@@ -50,7 +50,7 @@ Summary:        Libraries and headers for PreludeDB
 Group:          Development/C
 Requires:       %{libname} = %{version}-%{release}
 Requires:       openssl-devel
-Requires:       libltdl-devel
+Requires:       libtool-devel
 Provides:       preludedb-devel = %{version}-%{release}
 Provides:       %{_lib}preludedb-devel = %{version}-%{release}
 Provides:       preludedb-devel = %{version}-%{release}
