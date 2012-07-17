@@ -14,7 +14,7 @@ Source0:        http://www.prelude-ids.org/download/releases/%{name}-%{version}p
 Source4:        libpreludedb-addIndices.sql
 BuildRequires:  chrpath
 BuildRequires:  gtk-doc
-BuildRequires:  libgnutls-devel
+BuildRequires:  gnutls-devel
 BuildRequires:  libtool-devel
 BuildRequires:  mysql-devel
 BuildRequires:  openssl-devel
