@@ -196,3 +196,186 @@ rm -f %{buildroot}%{_libdir}/%{name}/plugins/sql/*.*a
 %files -n preludedb-sqlite3
 %{_libdir}/%{name}/plugins/sql/sqlite3.so
 %{_datadir}/%{name}/classic/sqlite*.sql
+
+
+%changelog
+* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.0-7mdv2011.0
++ Revision: 662408
+- mass rebuild
+
+* Thu Mar 17 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.0-6
++ Revision: 645750
+- relink against libmysqlclient.so.18
+
+* Sat Jan 01 2011 Oden Eriksson <oeriksson@mandriva.com> 1.0.0-5mdv2011.0
++ Revision: 627000
+- rebuilt against mysql-5.5.8 libs, again
+
+* Mon Dec 27 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0.0-4mdv2011.0
++ Revision: 625421
+- rebuilt against mysql-5.5.8 libs
+
+* Mon Nov 01 2010 Funda Wang <fwang@mandriva.org> 1.0.0-3mdv2011.0
++ Revision: 591329
+- rebuild for py 2.7
+
+* Sun Aug 01 2010 Funda Wang <fwang@mandriva.org> 1.0.0-2mdv2011.0
++ Revision: 564325
+- rebuild for perl 5.12.1
+
+* Sun Apr 25 2010 Funda Wang <fwang@mandriva.org> 1.0.0-1mdv2010.1
++ Revision: 538657
+- New version 1.0.0
+- disable static libs
+
+* Wed Feb 17 2010 Oden Eriksson <oeriksson@mandriva.com> 0.9.15.1-6mdv2010.1
++ Revision: 507032
+- rebuild
+
+* Wed Sep 02 2009 Christophe Fergeau <cfergeau@mandriva.com> 0.9.15.1-5mdv2010.0
++ Revision: 425691
+- rebuild
+
+* Sat Dec 27 2008 Funda Wang <fwang@mandriva.org> 0.9.15.1-4mdv2009.1
++ Revision: 319811
+- fix str fmt
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - use lowercase mysql-devel
+
+* Sat Dec 06 2008 Oden Eriksson <oeriksson@mandriva.com> 0.9.15.1-3mdv2009.1
++ Revision: 311201
+- rebuilt against mysql-5.1.30 libs
+
+* Fri Oct 17 2008 Funda Wang <fwang@mandriva.org> 0.9.15.1-2mdv2009.1
++ Revision: 294712
+- rebuild for package loss
+
+* Sun Oct 12 2008 Funda Wang <fwang@mandriva.org> 0.9.15.1-1mdv2009.1
++ Revision: 292806
+- New version 0.9.15.1
+
+* Thu Aug 28 2008 Funda Wang <fwang@mandriva.org> 0.9.15-1mdv2009.0
++ Revision: 276781
+- add missing file
+- New version 0.9.15
+
+* Sat Jun 28 2008 Oden Eriksson <oeriksson@mandriva.com> 0.9.14.1-5mdv2009.0
++ Revision: 229889
+- drop the pgsql headers patch
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Mon Jan 21 2008 Thierry Vignaud <tv@mandriva.org> 0.9.14.1-3mdv2008.1
++ Revision: 155663
+- rebuild for new perl
+
+* Mon Jan 21 2008 Funda Wang <fwang@mandriva.org> 0.9.14.1-2mdv2008.1
++ Revision: 155599
+- rebuild against latest gnutls
+
+* Fri Jan 04 2008 Jérôme Soyer <saispo@mandriva.org> 0.9.14.1-1mdv2008.1
++ Revision: 144990
+- New release
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Wed Sep 05 2007 Funda Wang <fwang@mandriva.org> 0.9.13-3mdv2008.0
++ Revision: 80181
+- fix BR
+- obsoletes old devel package
+
+* Mon Aug 20 2007 David Walluck <walluck@mandriva.org> 0.9.13-2mdv2008.0
++ Revision: 68089
+- fix some typos
+- fix html-dir
+
+* Mon Aug 20 2007 David Walluck <walluck@mandriva.org> 0.9.13-1mdv2008.0
++ Revision: 68081
+- regenerate configure in %%prep
+- 0.9.13
+- new lib policy
+- add static lib package
+- remove numeric_to_bigint patch (fixed upstream)
+- no need to regenerate configure
+- more strict directory permissions
+- move %%{_datadir}/%%{name}/classic out of lib package (still does not fix multi-owership problem)
+- change html-dir from %%{_datadir}/doc/%%{name}-devel-%%{version} to %%{_docdir}/%%{name}-devel (still not ideal)
+
+* Tue Aug 07 2007 David Walluck <walluck@mandriva.org> 0.9.12-1mdv2008.0
++ Revision: 59751
+- 0.9.12
+
+* Wed May 16 2007 David Walluck <walluck@mandriva.org> 0.9.11.3-3mdv2008.0
++ Revision: 27258
+- add patch from <https://trac.prelude-ids.org/ticket/225>
+
+* Sat May 12 2007 David Walluck <walluck@mandriva.org> 0.9.11.3-2mdv2008.0
++ Revision: 26470
+- add additional SQL file
+
+
+* Fri Feb 09 2007 David Walluck <walluck@mandriva.org> 0.9.11.3-1mdv2007.0
++ Revision: 118271
+- 0.9.11.3
+
+* Sun Jan 07 2007 David Walluck <walluck@mandriva.org> 0.9.11.1-1mdv2007.1
++ Revision: 105075
+- 0.9.11.1
+
+* Thu Dec 21 2006 David Walluck <walluck@mandriva.org> 0.9.11-2mdv2007.1
++ Revision: 100901
+- fix some macros
+
+* Thu Dec 21 2006 David Walluck <walluck@mandriva.org> 0.9.11-1mdv2007.1
++ Revision: 100893
+- 9.11-1
+
+* Thu Oct 19 2006 David Walluck <walluck@mandriva.org> 0.9.10-2mdv2007.0
++ Revision: 71044
+- fix build
+- 0.9.10
+- Import libpreludedb
+
+* Tue Sep 05 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.8.1-1mdv2007.0
+- rebuilt against MySQL-5.0.24a-1mdv2007.0 due to ABI changes
+
+* Tue Jul 11 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.8.1-1mdv2007.0
+- 0.9.8.1
+
+* Fri Jun 16 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.8-1mdv2007.0
+- 0.9.8 (Major bugfixes)
+
+* Fri Mar 31 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.7.1-1mdk
+- 0.9.7.1 (Minor bugfixes)
+
+* Thu Mar 09 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.6-1mdk
+- 0.9.6 (Minor bugfixes)
+- rediffed P0
+
+* Mon Mar 06 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.5.1-1mdk
+- 0.9.5.1
+
+* Wed Feb 22 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.5-1mdk
+- 0.9.5 (Major bugfixes)
+- added P0 to make it find the postgresql headers
+
+* Wed Feb 08 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.4-1mdk
+- 0.9.4 (Major bugfixes)
+
+* Mon Jan 16 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.3-1mdk
+- 0.9.3
+- added the sqlite sub package
+- fix autofoo
+
+* Tue Jan 10 2006 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-1mdk
+- initial Mandriva package
+
