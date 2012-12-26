@@ -49,10 +49,6 @@ database independently of the type/format of the database.
 Summary:        Libraries and headers for PreludeDB
 Group:          Development/C
 Requires:       %{libname} = %{version}-%{release}
-Requires:       openssl-devel
-Requires:       libtool-devel
-Provides:       preludedb-devel = %{version}-%{release}
-Provides:       %{_lib}preludedb-devel = %{version}-%{release}
 Provides:       preludedb-devel = %{version}-%{release}
 Obsoletes:	%mklibname -d preludedb 0
 
@@ -69,7 +65,6 @@ PreludeDB.
 %package -n preludedb-tools
 Summary:        The interface for %{libname}
 Group:          Networking/Other
-Requires:       %{libname} = %{version}-%{release}
 
 %description -n preludedb-tools
 Provides a convenient interface for sending alerts to Prelude
@@ -78,7 +73,6 @@ Manager.
 %package -n python-preludedb
 Summary:        Python bindings for PreludeDB
 Group:          Development/Python
-Requires:       %{libname} = %{version}-%{release}
 
 %description -n python-preludedb
 Provides python bindings for PreludeDB.
@@ -86,7 +80,6 @@ Provides python bindings for PreludeDB.
 %package -n perl-preludedb
 Summary:        Perl bindings for PreludeDB
 Group:          Development/Perl
-Requires:       %{libname} = %{version}-%{release}
 
 %description -n perl-preludedb
 Provides perl bindings for PreludeDB.
@@ -94,7 +87,6 @@ Provides perl bindings for PreludeDB.
 %package -n preludedb-mysql
 Summary:        Plugin to use prelude with a MySQL database
 Group:          System/Servers
-Requires:       %{libname} = %{version}-%{release}
 Obsoletes:      prelude-manager-mysql-plugin < %{version}-%{release}
 Provides:       prelude-manager-mysql-plugin = %{version}-%{release}
 
@@ -105,7 +97,6 @@ database.
 %package -n preludedb-pgsql
 Summary:        Plugin to use prelude with a PostgreSQL database
 Group:          System/Servers
-Requires:       %{libname} = %{version}-%{release}
 Obsoletes:      prelude-manager-pgsql-plugin < %{version}-%{release}
 Provides:       prelude-manager-pgsql-plugin = %{version}-%{release}
 
@@ -116,14 +107,13 @@ database.
 %package -n preludedb-sqlite3
 Summary:        Plugin to use prelude with a SQLite3 database
 Group:          System/Servers
-Requires:       %{libname} = %{version}-%{release}
 
 %description -n preludedb-sqlite3
 This plugin authorise prelude to store alerts into a SQLite3
 database.
 
 %prep
-%setup -q -n %{name}-%{version}p1
+%setup -qn %{name}-%{version}p1
 
 %build
 %configure2_5x \
@@ -140,12 +130,10 @@ database.
 %make
 
 %install
-%{__rm} -rf %{buildroot}
-
 %makeinstall_std
 %makeinstall_std -C bindings/perl
 
-%{__cp} -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
+%cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
 
