@@ -11,6 +11,7 @@ Group:		System/Libraries
 URL:		http://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}p1.tar.gz
 Source4:	libpreludedb-addIndices.sql
+Patch0:		libpreludedb-stdio_h.patch
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
@@ -109,6 +110,7 @@ database.
 
 %prep
 %setup -qn %{name}-%{version}p1
+%apply_patches
 
 %build
 %configure2_5x \
