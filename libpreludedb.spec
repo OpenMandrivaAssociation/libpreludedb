@@ -34,9 +34,9 @@ efficiently wi thout worrying about SQL, and to access the
 database independently of the type/format of the database.
 
 %package -n	%{libname}
-Summary:        Provide the framework for easy access to the Prelude database
-Group:          System/Libraries
-Provides:       %{name} = %{version}-%{release}
+Summary:	Provide the framework for easy access to the Prelude database
+Group:		System/Libraries
+Provides:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 The PreludeDB Library provides an abstraction layer upon the type
@@ -45,14 +45,13 @@ allows developers to use the Prelude IDMEF database easily and
 efficiently wi thout worrying about SQL, and to access the
 database independently of the type/format of the database.
 
-%package -n %{devname}
-Summary:        Libraries and headers for PreludeDB
-Group:          Development/C
-Requires:       %{libname} = %{version}-%{release}
-Provides:       preludedb-devel = %{version}-%{release}
-Obsoletes:	%mklibname -d preludedb 0
+%package -n	%{devname}
+Summary:	Libraries and headers for PreludeDB
+Group:		Development/C
+Requires:	%{libname} = %{version}-%{release}
+Provides:	preludedb-devel = %{version}-%{release}
 
-%description -n %{devname}
+%description -n	%{devname}
 The PreludeDB Library provides an abstraction layer upon the type
 and the format of the database used to store IDMEF alerts. It
 allows developers to use the Prelude IDMEF database easily and
@@ -62,53 +61,49 @@ database independently of the type/format of the database.
 This package contains the development libraries and headers for
 PreludeDB.
 
-%package -n preludedb-tools
-Summary:        The interface for %{libname}
-Group:          Networking/Other
+%package -n	preludedb-tools
+Summary:	The interface for %{libname}
+Group:		Networking/Other
 
-%description -n preludedb-tools
+%description -n	preludedb-tools
 Provides a convenient interface for sending alerts to Prelude
 Manager.
 
-%package -n python-preludedb
-Summary:        Python bindings for PreludeDB
-Group:          Development/Python
+%package -n	python-preludedb
+Summary:	Python bindings for PreludeDB
+Group:		Development/Python
 
-%description -n python-preludedb
+%description -n	python-preludedb
 Provides python bindings for PreludeDB.
 
-%package -n perl-preludedb
-Summary:        Perl bindings for PreludeDB
-Group:          Development/Perl
+%package -n	perl-preludedb
+Summary:	Perl bindings for PreludeDB
+Group:		Development/Perl
 
-%description -n perl-preludedb
+%description -n	perl-preludedb
 Provides perl bindings for PreludeDB.
 
-%package -n preludedb-mysql
-Summary:        Plugin to use prelude with a MySQL database
-Group:          System/Servers
-Obsoletes:      prelude-manager-mysql-plugin < %{version}-%{release}
-Provides:       prelude-manager-mysql-plugin = %{version}-%{release}
+%package -n	preludedb-mysql
+Summary:	Plugin to use prelude with a MySQL database
+Group:		System/Servers
 
-%description -n preludedb-mysql
+%description -n	preludedb-mysql
 This plugin authorise prelude to store alerts into a MySQL
 database.
 
-%package -n preludedb-pgsql
-Summary:        Plugin to use prelude with a PostgreSQL database
-Group:          System/Servers
-Obsoletes:      prelude-manager-pgsql-plugin < %{version}-%{release}
-Provides:       prelude-manager-pgsql-plugin = %{version}-%{release}
+%package -n	preludedb-pgsql
+Summary:	Plugin to use prelude with a PostgreSQL database
+Group:		System/Servers
 
-%description -n preludedb-pgsql
+%description -n	preludedb-pgsql
 This plugin authorise prelude to store alerts into a PostgreSQL
 database.
 
-%package -n preludedb-sqlite3
-Summary:        Plugin to use prelude with a SQLite3 database
-Group:          System/Servers
+%package -n	preludedb-sqlite3
+Summary:	Plugin to use prelude with a SQLite3 database
+Group:		System/Servers
 
-%description -n preludedb-sqlite3
+%description -n	preludedb-sqlite3
 This plugin authorise prelude to store alerts into a SQLite3
 database.
 
@@ -117,23 +112,24 @@ database.
 
 %build
 %configure2_5x \
-    --disable-rpath \
-    --disable-static \
-    --enable-shared \
-    --localstatedir=%{_var} \
-    --includedir=%{_includedir}/%{name} \
-    --with-swig \
-    --with-perl-installdirs=vendor \
-    --with-python \
-    --enable-gtk-doc \
-    --with-html-dir=%{_docdir}/%{devname}
+	--disable-rpath \
+	--disable-static \
+	--enable-shared \
+	--localstatedir=%{_var} \
+	--includedir=%{_includedir}/%{name} \
+	--with-swig \
+	--with-perl-installdirs=vendor \
+	--with-python \
+	--enable-gtk-doc \
+	--with-html-dir=%{_docdir}/%{devname}
+
 %make
 
 %install
 %makeinstall_std
 %makeinstall_std -C bindings/perl
 
-%cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
+cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
 
