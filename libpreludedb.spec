@@ -8,7 +8,7 @@ Version:	1.0.1
 Release:	0.0.p1.2
 License:	GPLv2+
 Group:		System/Libraries
-URL:		http://www.prelude-ids.org/
+Url:		http://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}p1.tar.gz
 Source4:	libpreludedb-addIndices.sql
 Patch0:		libpreludedb-stdio_h.patch
@@ -114,7 +114,6 @@ database.
 
 %build
 %configure2_5x \
-	--disable-rpath \
 	--disable-static \
 	--enable-shared \
 	--localstatedir=%{_var} \
@@ -135,14 +134,9 @@ cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
 %multiarch_binaries %{buildroot}%{_bindir}/libpreludedb-config
 
-# cleanup
-rm -f %{buildroot}%{_libdir}/*.*a
-rm -f %{buildroot}%{_libdir}/%{name}/plugins/formats/*.*a
-rm -f %{buildroot}%{_libdir}/%{name}/plugins/sql/*.*a
-
 %files -n %{libname}
 %doc COPYING ChangeLog HACKING.README LICENSE.README NEWS README
-%{_libdir}/lib*.so.*
+%{_libdir}/libpreludedb.so.%{major}*
 %dir %{_libdir}/%{name}/plugins
 %dir %{_libdir}/%{name}/plugins/formats
 %dir %{_libdir}/%{name}/plugins/sql
