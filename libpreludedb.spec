@@ -24,7 +24,7 @@ BuildRequires:	postgresql-devel
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(libprelude)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(zlib)
 
@@ -114,6 +114,7 @@ database.
 %apply_patches
 
 %build
+export PYTHON=%{__python2}
 %configure2_5x \
 	--disable-static \
 	--enable-shared \
