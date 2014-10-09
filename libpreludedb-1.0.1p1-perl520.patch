@@ -1,0 +1,13 @@
+--- libpreludedb-1.0.1p1/bindings/perl/PreludeDB.c.orig	2014-07-05 20:54:08.558900150 +0000
++++ libpreludedb-1.0.1p1/bindings/perl/PreludeDB.c	2014-07-05 20:54:14.609047118 +0000
+@@ -1442,7 +1442,9 @@
+   #undef eof
+ #endif
+ #ifdef bool
+-  #undef bool
++  #ifndef __bool_true_false_are_defined
++    #undef bool
++  #endif
+ #endif
+ #ifdef close
+   #undef close

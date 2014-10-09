@@ -12,6 +12,7 @@ Url:		http://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}p1.tar.gz
 Source4:	libpreludedb-addIndices.sql
 Patch0:		libpreludedb-stdio_h.patch
+Patch1:		libpreludedb-1.0.1p1-perl520.patch
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
