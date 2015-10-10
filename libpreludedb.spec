@@ -1,6 +1,10 @@
-%define major	1
+%define major	7
 %define libname	%mklibname preludedb %{major}
 %define devname	%mklibname preludedb -d
+%define cppmajor		2
+%define libcpp			%mklibname preludedbcpp %{cppmajor}
+
+%define _disable_lto 1
 
 Summary:	Provide the framework for easy access to the Prelude database
 Name:		libpreludedb
@@ -11,6 +15,7 @@ Group:		System/Libraries
 Url:		http://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 Source4:	libpreludedb-addIndices.sql
+Patch1:		libpreludedb-1.2.6-cpp-lib.patch
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
@@ -22,7 +27,7 @@ BuildRequires:	postgresql-devel
 BuildRequires:	pkgconfig(gnutls)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(libprelude)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(zlib)
 
@@ -45,10 +50,22 @@ allows developers to use the Prelude IDMEF database easily and
 efficiently wi thout worrying about SQL, and to access the
 database independently of the type/format of the database.
 
+%package -n     %{libcpp}
+Summary:        Provide the framework for easy access to the Prelude database
+Group:          System/Libraries
+
+%description -n %{libcpp}
+The PreludeDB Library provides an abstraction layer upon the type
+and the format of the database used to store IDMEF alerts. It
+allows developers to use the Prelude IDMEF database easily and
+efficiently wi thout worrying about SQL, and to access the
+database independently of the type/format of the database.
+
 %package -n	%{devname}
 Summary:	Libraries and headers for PreludeDB
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libcpp} = %{version}-%{release}
 Provides:	preludedb-devel = %{version}-%{release}
 
 %description -n	%{devname}
@@ -75,13 +92,6 @@ Group:		Development/Python
 
 %description -n	python-preludedb
 Provides python bindings for PreludeDB.
-
-%package -n	perl-preludedb
-Summary:	Perl bindings for PreludeDB
-Group:		Development/Perl
-
-%description -n	perl-preludedb
-Provides perl bindings for PreludeDB.
 
 %package -n	preludedb-mysql
 Summary:	Plugin to use prelude with a MySQL database
@@ -110,9 +120,11 @@ database.
 %prep
 %setup -q
 %apply_patches
+autoreconf -fiv
 
 %build
-export PYTHON=%{__python2}
+export PYTHON=%{__python3}
+export CXX=g++
 %configure \
 	--disable-static \
 	--enable-shared \
@@ -120,7 +132,8 @@ export PYTHON=%{__python2}
 	--includedir=%{_includedir}/%{name} \
 	--with-swig \
 	--with-perl-installdirs=vendor \
-	--with-python \
+	--with-python3 \
+	--without-python2 \
 	--enable-gtk-doc \
 	--with-html-dir=%{_docdir}/%{devname}
 
@@ -128,7 +141,6 @@ export PYTHON=%{__python2}
 
 %install
 %makeinstall_std
-%makeinstall_std -C bindings/perl
 
 cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
@@ -143,6 +155,10 @@ cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 %{_libdir}/%{name}/plugins/formats/classic.so
 %{_datadir}/%{name}/classic/addIndices.sql
 
+%files -n %{libcpp}
+%{_libdir}/%{name}cpp.so.%{cppmajor}
+%{_libdir}/%{name}cpp.so.%{cppmajor}.*
+
 %files -n %{devname}
 %doc %{_docdir}/%{devname}
 %{multiarch_bindir}/%{name}-config
@@ -150,6 +166,7 @@ cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 %{_libdir}/*.so
 %dir %{_includedir}/%{name}
 %{_includedir}/%{name}/*.h
+%{_includedir}/%{name}/*.hxx
 %{_datadir}/aclocal/*.m4
 
 %files -n preludedb-tools
@@ -158,10 +175,6 @@ cp -a %{SOURCE4} %{buildroot}%{_datadir}/%{name}/classic/addIndices.sql
 
 %files -n python-preludedb
 %{_libdir}/python*/site-packages/*
-
-%files -n perl-preludedb
-%{perl_vendorlib}/*/auto/PreludeDB/PreludeDB.so
-%{perl_vendorlib}/*/PreludeDB.pm
 
 %files -n preludedb-mysql
 %{_libdir}/%{name}/plugins/sql/mysql.so
