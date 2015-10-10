@@ -1,18 +1,16 @@
-%define major	0
+%define major	1
 %define libname	%mklibname preludedb %{major}
 %define devname	%mklibname preludedb -d
 
 Summary:	Provide the framework for easy access to the Prelude database
 Name:		libpreludedb
-Version:	1.0.1
-Release:	0.0.p1.3
+Version:	1.2.6
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.prelude-ids.org/
-Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}p1.tar.gz
+Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 Source4:	libpreludedb-addIndices.sql
-Patch0:		libpreludedb-stdio_h.patch
-Patch1:		libpreludedb-1.0.1p1-perl520.patch
 
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
@@ -110,12 +108,12 @@ This plugin authorise prelude to store alerts into a SQLite3
 database.
 
 %prep
-%setup -qn %{name}-%{version}p1
+%setup -q
 %apply_patches
 
 %build
 export PYTHON=%{__python2}
-%configure2_5x \
+%configure \
 	--disable-static \
 	--enable-shared \
 	--localstatedir=%{_var} \
