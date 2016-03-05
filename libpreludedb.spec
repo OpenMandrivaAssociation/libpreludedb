@@ -9,7 +9,7 @@
 Summary:	Provide the framework for easy access to the Prelude database
 Name:		libpreludedb
 Version:	1.2.6
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.prelude-ids.org/
