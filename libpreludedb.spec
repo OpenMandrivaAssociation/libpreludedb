@@ -12,7 +12,7 @@ Version:	1.2.6
 Release:	4
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://www.prelude-ids.org/
+Url:		https://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 Source4:	libpreludedb-addIndices.sql
 Patch1:		libpreludedb-1.2.6-cpp-lib.patch
