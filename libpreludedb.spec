@@ -17,6 +17,11 @@ Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 Source4:	libpreludedb-addIndices.sql
 Patch1:		libpreludedb-1.2.6-cpp-lib.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	chrpath
 BuildRequires:	gtk-doc
 BuildRequires:	swig
