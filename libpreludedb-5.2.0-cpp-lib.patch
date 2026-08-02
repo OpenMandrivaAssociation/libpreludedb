@@ -1,5 +1,5 @@
---- libpreludedb-1.2.6/m4/libprelude.m4~	2015-08-04 01:25:50.741003746 +0800
-+++ libpreludedb-1.2.6/m4/libprelude.m4	2015-09-11 12:34:56.651925859 +0800
+--- libpreludedb-5.2.0/m4/libprelude.m4
++++ libpreludedb-5.2.0/m4/libprelude.m4
 @@ -50,6 +50,7 @@
      LIBPRELUDE_LDFLAGS=`$LIBPRELUDE_CONFIG $libprelude_config_args --ldflags`
      LIBPRELUDE_LIBS=`$LIBPRELUDE_CONFIG $libprelude_config_args --libs`
@@ -16,8 +16,8 @@
    AC_SUBST(LIBPRELUDE_PREFIX)
    AC_SUBST(LIBPRELUDE_CONFIG_PREFIX)
  ])
---- libpreludedb-1.2.6/bindings/c++/Makefile.am~	2015-08-04 01:25:50.695003748 +0800
-+++ libpreludedb-1.2.6/bindings/c++/Makefile.am	2015-09-11 12:35:38.583074223 +0800
+--- libpreludedb-5.2.0/bindings/c++/Makefile.am
++++ libpreludedb-5.2.0/bindings/c++/Makefile.am
 @@ -7,7 +7,7 @@
  libpreludedbcpp_la_SOURCES = preludedb.cxx preludedb-sql.cxx preludedb-error.cxx
  

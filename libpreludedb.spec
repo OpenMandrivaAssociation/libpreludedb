@@ -8,14 +8,14 @@
 
 Summary:	Provide the framework for easy access to the Prelude database
 Name:		libpreludedb
-Version:	1.2.6
-Release:	4
+Version:	5.2.0
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 Url:		https://www.prelude-ids.org/
 Source0:	http://www.prelude-ids.org/download/releases/%{name}-%{version}.tar.gz
 Source4:	libpreludedb-addIndices.sql
-Patch1:		libpreludedb-1.2.6-cpp-lib.patch
+Patch1:		libpreludedb-5.2.0-cpp-lib.patch
 
 BuildRequires:	autoconf
 BuildRequires:	automake
